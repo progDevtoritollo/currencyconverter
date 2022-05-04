@@ -5,9 +5,9 @@ import axios from "axios";
 
 function App() {
   const URL_API =
-    "https://api.apilayer.com/fixer/latest?apikey=GfALTWcSomk8apHZcbJAXR92aUWNnEIM";
+    "https://api.apilayer.com/fixer/latest?apikey=fMQhPYPZqPNmbszXkuH91iZKXyEzV7QP";
 
-  const [rates, setRates] = useState([]);
+  const [rates, setRates] = useState({});
   const [amount1, setAmount1] = useState(1);
   const [amount2, setAmount2] = useState(1);
   const [currency1, setcurrency1] = useState("USD");
@@ -17,12 +17,15 @@ function App() {
     axios.get(URL_API).then((res) => {
       console.log(res);
       setRates(res.data.rates);
-      console.log(rates);
-      if (!!rates) {
-        handleAmount1Change(1);
-      }
     });
   }, []);
+
+  useEffect(() => {
+    if (!!rates) {
+      handleAmount1Change(1);
+      console.log(rates);
+    }
+  }, [rates]);
 
   const handleAmount1Change = (amount1) => {
     setAmount2(roundUp((amount1 * rates[currency2]) / rates[currency1]));
