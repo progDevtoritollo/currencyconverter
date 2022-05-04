@@ -25,39 +25,53 @@ function App() {
   }, []);
 
   const handleAmount1Change = (amount1) => {
-    setAmount2((amount1 * rates[currency2]) / rates[currency1]);
+    setAmount2(roundUp((amount1 * rates[currency2]) / rates[currency1]));
     setAmount1(amount1);
   };
   const handleCurrency1Change = (currency1) => {
-    setAmount2((amount1 * rates[currency2]) / rates[currency1]);
+    setAmount2(roundUp((amount1 * rates[currency2]) / rates[currency1]));
     setcurrency1(currency1);
   };
 
   const handleAmount2Change = (amount2) => {
-    setAmount1((amount2 * rates[currency1]) / rates[currency2]);
+    setAmount1(roundUp((amount2 * rates[currency1]) / rates[currency2]));
     setAmount2(amount2);
   };
   const handleCurrency2Change = (currency2) => {
-    setAmount1((amount2 * rates[currency1]) / rates[currency2]);
+    setAmount1(roundUp((amount2 * rates[currency1]) / rates[currency2]));
     setcurrency2(currency2);
   };
 
+  const currencyCalculate = (currency) => {
+    return roundUp((1 * rates["UAH"]) / rates[currency]);
+  };
+
+  const roundUp = (val) => {
+    return val.toFixed(2);
+  };
   return (
     <div className="App">
-      <CurrencyInput
-        onSelectChange={handleCurrency1Change}
-        onAmountChange={handleAmount1Change}
-        currencies={Object.keys(rates)}
-        amount={amount1}
-        currency={currency1}
-      />
-      <CurrencyInput
-        onSelectChange={handleCurrency2Change}
-        onAmountChange={handleAmount2Change}
-        currencies={Object.keys(rates)}
-        amount={amount2}
-        currency={currency2}
-      />
+      <header>
+        <h1>UAH = </h1>
+        <h1>EUR:{currencyCalculate("EUR")}</h1>
+        <h1>USD:{currencyCalculate("USD")}</h1>
+      </header>
+      <div className="content">
+        <CurrencyInput
+          onSelectChange={handleCurrency1Change}
+          onAmountChange={handleAmount1Change}
+          currencies={Object.keys(rates)}
+          amount={amount1}
+          currency={currency1}
+        />
+        <CurrencyInput
+          onSelectChange={handleCurrency2Change}
+          onAmountChange={handleAmount2Change}
+          currencies={Object.keys(rates)}
+          amount={amount2}
+          currency={currency2}
+        />
+      </div>
     </div>
   );
 }
