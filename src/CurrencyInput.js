@@ -1,13 +1,13 @@
 import React from "react";
+import "./CurrencyInput.css";
 
 const CurrencyInput = (props) => {
   const { currency, currencies, amount, onAmountChange, onSelectChange } =
     props;
   return (
-    <div>
+    <div className="content-currency">
       <input
         type="text"
-        className="input"
         value={amount}
         onChange={(e) => onAmountChange(e.target.value)}
       />

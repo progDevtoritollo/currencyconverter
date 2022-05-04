@@ -52,7 +52,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>UAH = </h1>
+        <h1 className="UAH">UAH - </h1>
         <h1>EUR:{currencyCalculate("EUR")}</h1>
         <h1>USD:{currencyCalculate("USD")}</h1>
       </header>

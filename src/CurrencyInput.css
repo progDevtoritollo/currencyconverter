@@ -1,0 +1,31 @@
+.content-currency {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 200px;
+}
+
+input,
+select {
+  color: white;
+  background: none;
+  border: 1;
+  border-color: #61dafb;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+input {
+  padding-left: 20px;
+  margin: 10px;
+}
+
+select {
+  padding: 15px;
+  padding-right: 10px;
+}
+
+select option {
+  color: #61dafb;
+  background: #282c34;
+}
